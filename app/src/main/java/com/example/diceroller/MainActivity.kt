@@ -36,11 +36,9 @@ class MainActivity : AppCompatActivity() {
          * And set the content description for screen reader
          **/
 
+        // for dice-1
         val diceImage : ImageView  = findViewById(R.id.imageView)
-        val diceImage2 : ImageView = findViewById(R.id.imageView2)
-
         val num  = dice.roll()
-        val num2 = dice.roll()
 
         val image = when ( num ) {
             1 -> R.drawable.dice_1
@@ -50,20 +48,28 @@ class MainActivity : AppCompatActivity() {
             5 -> R.drawable.dice_5
             else -> R.drawable.dice_6
         }
-
-        val image2 = when ( num2 ) {
-            1 -> R.drawable.dice_1
-            2 -> R.drawable.dice_2
-            3 -> R.drawable.dice_3
-            4 -> R.drawable.dice_4
-            5 -> R.drawable.dice_5
-            else -> R.drawable.dice_6
-
-        }
         diceImage.setImageResource(image)
         diceImage.contentDescription = num.toString()
 
-        diceImage2.setImageResource(image2)
+        // for dice-2
+        val diceImage2 : ImageView = findViewById(R.id.imageView2)
+        val num2 = dice.roll()
+
+        /**
+         *  this block is same as *diceImage2.setImageResource(R.drawable.dice_<no.>)*
+         *
+         **/
+        with(diceImage2) {
+             setImageResource( when ( num2 ) {
+                    1 -> R.drawable.dice_1
+                    2 -> R.drawable.dice_2
+                    3 -> R.drawable.dice_3
+                    4 -> R.drawable.dice_4
+                    5 -> R.drawable.dice_5
+                    else -> R.drawable.dice_6
+                    }
+             )
+        }
         diceImage2.contentDescription = num2.toString()
     }
 }
